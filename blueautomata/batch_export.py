@@ -17,9 +17,9 @@ def batchExport(status = 'START', masterlist = 'data/fakedata.csv'):
             # filter the dataframe by dept
             filter = masterlist[masterlist['dept_name'] == dept_name[i]]
             # name the file using department code
-            dept_code = dept[i]
+            filecode = dept_code[i]
             # export the file
-            filter.to_excel('data/dept_' + dept_code + '.xlsx', index=True)
+            filter.to_excel('data/dept_' + filecode + '.xlsx', index=True)
     
         # print the status
         print('Export Completed')
