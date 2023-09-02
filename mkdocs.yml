@@ -1,4 +1,84 @@
-site_name: BlueAutomata
 
+# site info
+site_name: BlueAutomata
+site_url: ""
+site_author: 'keanteng'
+site_description: 'A documentation for the pacakage - BlueAutomata'
+
+# site theme
 theme:
   name: material
+  palette:
+    primary:  lime
+    accent: black
+  plugins:
+    - search:
+      lang: en
+  features:
+    - navigation.footer
+    - content.code.copy
+  logo: assets/logo.png
+  favicon: assets/favicon.png
+
+# add repository
+repo_url: https://github.com/keanteng/blueautomata
+repo_name: keanteng/blueautomata
+
+# copyright
+copyright: BlueAutomata &copy; 2023 Kean Teng
+
+# social links
+extra:
+  social:
+  - icon: fontawesome/brands/github
+    link: https://github.com/keanteng
+  - icon: fontawesome/brands/medium
+    link: https://khorkeanteng.medium.com
+  - icon: fontawesome/brands/linkedin
+    link: https://my.linkedin.com/in/khorkeanteng
+  - icon: fontawesome/brands/instagram
+    link: https://www.instagram.com/khorkeanteng/
+  - icon: fontawesome/brands/twitter
+    link: https://twitter.com/realKeanTeng
+
+# Extensions
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+      emoji_index: !!python/name:materialx.emoji.twemoji
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+      user: squidfunk
+      repo: mkdocs-material
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
