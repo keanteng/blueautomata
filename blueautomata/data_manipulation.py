@@ -5,67 +5,52 @@ Subsequently, it will read and clean the data, so that they have the same format
 
 import os
 import pandas as pd
-from data_cleaning import data_cleaning
+from data_cleaning import dataCleaning
 
-def automata_execution(folder_path = r"C:\\Users\\Khor Kean Teng\\Downloads\\AUP Automata\\Data\\fakesystem\\experiment", checklist = 'data/checklist.csv', staff_data = 'data/fake_hr_data.csv', key_lib = 'data/library.xlsx', name_key = ['NaSdaq'], name_code = [1]):
+def automata_execution(folder_path = r"C:\Users\Khor Kean Teng\Downloads\AUP Automata\rawdata", checklist = 'rawdata/Department Checklist.xlsx', staff_data = 'rawdata/stafflist.xlsx', name_key = ['CCRIS'], name_code = [1]):
     
-    Department = []
-    Dept = []
-    UserID = []
-    Fullname = []
-    System1 = []
-    Cube = []
+    dfs = []
 
+    folder_list = pd.Series(os.listdir(folder_path))
     
-    for filename in os.listdir(folder_path):
-        if filename.endswith(".xlsx"):
-            for i in range(len(name_key)):
-                if (name_key[i].lower() or name_key[i].upper()) in filename: 
-                    file_path = os.path.join(folder_path, filename)
+    for k in range(0, len(folder_list)):
+        if folder_list[k].endswith(".xlsx"):
+            for j in range(0,len(name_key)):
+                checker = name_key[j].upper()
+                if checker in folder_list[k]: 
+                    file_path = folder_path + '/' + checker.upper() + '.xlsx'
                     excelFile = pd.ExcelFile(file_path)
                     
-                    keyname = pd.DataFrame({'key': name_key[i].upper()}, index=[0])
-                    keyname['key_name'] = keyname['key'].map(key_lib.set_index('key')['key_name'])
-                    key_name = keyname['key_name'][0]
-                    
-                    if name_code[i] == 1:
-                        df = data_cleaning(excelFile, staff_data, checklist, key_name, namecode = 1)
-                        for i in range(len(df)):
-                            Department.append(df['Department'][i])
-                            Dept.append(df['Dept'][i])
-                            UserID.append(df['User ID'][i])
-                            Fullname.append(df['Fullname'][i])
-                            System1.append(df['System1'][i])
-                            Cube.append(df['Cube'][i])
-                    elif name_code[i] == 2:
-                        df = data_cleaning(excelFile, staff_data, checklist, key_name, namecode = 2)
-                        for i in range(len(df)):
-                            Department.append(df['Department'][i])
-                            Dept.append(df['Dept'][i])
-                            UserID.append(df['User ID'][i])
-                            Fullname.append(df['Fullname'][i])
-                            System1.append(df['System1'][i])
-                            Cube.append(df['Cube'][i])
+                    if name_code[j] == 1:
+                        df = dataCleaning(excelFile, staff_data, checklist, key = 1)
+                        dfs.append(df)
+                    elif name_code[j] == 2:
+                        df = dataCleaning(excelFile, staff_data, checklist, key = 2)
+                        dfs.append(df)
+                    elif name_code[j] == 3:
+                        df = dataCleaning(excelFile, staff_data, checklist, key = 3)
+                        dfs.append(df)
+                    elif name_code[j] == 4:
+                        df = dataCleaning(excelFile, staff_data, checklist, key = 4)
+                        dfs.append(df)
+                    elif name_code[j] == 5:
+                        df = dataCleaning(excelFile, staff_data, checklist, key = 5)
+                        dfs.append(df)
+                    elif name_code[j] == 6:
+                        df = dataCleaning(excelFile, staff_data, checklist, key = 6)
+                        dfs.append(df)
                     else:
-                        df = data_cleaning(excelFile, staff_data, checklist, key_name, namecode = 3)
-                        for i in range(len(df)):
-                            Department.append(df['Department'][i])
-                            Dept.append(df['Dept'][i])
-                            UserID.append(df['User ID'][i])
-                            Fullname.append(df['Fullname'][i])
-                            System1.append(df['System1'][i])
-                            Cube.append(df['Cube'][i])
-                else:
-                    pass
+                        df = dataCleaning(excelFile, staff_data, checklist, key = 10)
+                        #df = dataCleaning(pd.ExcelFile('rawdata/ADMIN.xlsx') , staff_data = 'rawdata/stafflist.xlsx', checklist = 'rawdata/Department Checklist.xlsx', key = 10)
+                        dfs.append(df)
 
-    dataframes = pd.DataFrame({'Department': Department,
-                                'Dept': Dept,
-                                'UserID': UserID,
-                                'Fullname': Fullname,
-                                'System1': System1,
-                                'Cube': Cube})
+    dataframes = pd.concat([df for df in dfs], ignore_index=True)
     
     print(dataframes.head())
     print(len(dataframes))
+    dataframes.to_excel('data/automataoutput.xlsx', index = False)
 
-automata_execution()
+automata_execution(
+    name_key= ['DP', 'STATSMART'],
+    name_code= [1, 2],
+)
