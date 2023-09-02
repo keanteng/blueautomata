@@ -2,17 +2,16 @@ from distutils.core import setup
 setup(
   name = 'BlueAutomata',         # How you named your package folder (MyLib)
   packages = ['BlueAutomata'],   # Chose the same as "name"
-  version = '1.0',      # Start with a small number and increase it with every change you make
+  version = '0.1',      # Start with a small number and increase it with every change you make
   license='MIT',        # Chose a license from here: https://help.github.com/articles/licensing-a-repository
-  description = 'TYPE YOUR DESCRIPTION HERE',   # Give a short description about your library
+  description = 'A package to ease the workflow for reporting in a company',   # Give a short description about your library
   author = 'keanteng',                   # Type in your name
   author_email = 'u2004763@siswa.um.edu.my',      # Type in your E-Mail
   url = 'https://github.com/keanteng/blueautomata',   # Provide either the link to your github or to your website
-  download_url = 'https://github.com/user/reponame/archive/v_01.tar.gz',    # I explain this later on
+  download_url = 'https://github.com/keanteng/blueautomata/archive/refs/tags/v_0.1.tar.gz',    # I explain this later on
   keywords = ['automation', 'vba', 'reporting'],   # Keywords that define your package best
   install_requires=[            # I get to this in a second
           'pandas',
-          'os',
           'win32com.client',
       ],
   classifiers=[

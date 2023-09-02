@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: BlueAutomata
+Version: 0.1
+Summary: A package to ease the workflow for reporting in a company
+Home-page: https://github.com/keanteng/blueautomata
+Download-URL: https://github.com/keanteng/blueautomata/archive/refs/tags/v_0.1.tar.gz
+Author: keanteng
+Author-email: u2004763@siswa.um.edu.my
+License: MIT
+Keywords: automation,vba,reporting
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.11
+License-File: LICENSE
+License-File: LICENSE.txt
