@@ -10,15 +10,15 @@ Warnings:
 
 import win32com.client
 
-def templatetize(status = 'START', filepath = r'C:\\Users\\Khor Kean Teng\\Downloads\\AUP Automata\\vbanew.xlsm', macro = 'vbanew.xlsm!Module1.kt_template'):
-    if status == 'START':
-        xl = win32com.client.Dispatch("Excel.Application")
-        wb = xl.Workbooks.Open(filepath)
-        xl.Application.Run(macro)
-        wb.Save()
-        xl.Application.Quit()
-        print('Execution Completed')
-    else:
-        xl = win32com.client.Dispatch("Excel.Application")
-        xl.Application.Quit()
-        print('Execution Failed. Please enter the correct status')
+class automate_vba:
+    def __init__(self, filepath, macro):
+        self.filepath = filepath
+        self.macro = macro
+
+    def templatetize(self):
+            xl = win32com.client.Dispatch("Excel.Application")
+            wb = xl.Workbooks.Open(self.filepath)
+            xl.Application.Run(self.macro)
+            wb.Save()
+            xl.Application.Quit()
+            print('Execution Completed')
