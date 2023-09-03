@@ -1,22 +1,41 @@
 
 # site info
 site_name: BlueAutomata
-site_url: ""
+site_url: "https://keanteng.github.io/blueautomata/"
 site_author: 'keanteng'
-site_description: 'A documentation for the pacakage - BlueAutomata'
+site_description: 'A documentation for the package - BlueAutomata'
+
+# navigation
+nav:
+  - Home: index.md
+  - Concepts: concepts.md
+  - Functions: functions.md
+  - Notebooks:
+    - notebooks/ideation.ipynb
 
 # site theme
 theme:
   name: material
   palette:
-    primary:  lime
-    accent: black
+    - scheme: default
+      primary: lime
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - scheme: slate
+      primary: lime
+      accent: brown
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
   plugins:
     - search:
       lang: en
   features:
     - navigation.footer
     - content.code.copy
+    - content.code.select
+    - content.action.edit
   logo: assets/logo.png
   favicon: assets/favicon.png
 
@@ -82,3 +101,12 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde
+
+plugins:
+  - mkdocs-jupyter:
+      include_source: True
+      ignore_h1_titles: True
+      allow_errors: false
+      ignore: ["conf.py"]
+      execute: False
+      execute_ignore: ["notebooks/*.ipynb", "workshops/*.ipynb"]
