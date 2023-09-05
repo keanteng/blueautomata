@@ -52,172 +52,18 @@ class BlueAutomata:
                 # check if the user ID is in the staff list
                 df['User ID'] = df['User ID'].str.lower()
                 df['User ID'] = df['User ID'].str.strip()
-                df['check'] = df['User ID'].isin(staff['LAN ID'])
                 
-                # auto fix wrong user ID
-                # We will check the availability of the Name column
-                # there are two persons with the same name
-                if 'Name' in df:
-                    unique_name = pd.DataFrame(staff['Name'].drop_duplicates(keep = 'first'))
-                    unique_name['LAN ID'] = staff['LAN ID']
-                    dfnew = df[df['check'] == False]
-                    dfnew['User ID'] = dfnew['Name'].map(unique_name.set_index('Name')['LAN ID'])
-                    
-                    # update the the check column
-                    # now the false positive should be corrected
-                    dfnew['check'] = dfnew['User ID'].isin(staff['LAN ID'])
-                    dfnew = dfnew[dfnew['check'] == True]
-                    df = pd.concat([df, dfnew], ignore_index=True)
-                
-                # adding details to the data
-                df = df[df['check'] == True]
-                df['Department'] = df['User ID'].map(staff.set_index('LAN ID')['Department'])
-                df['Name'] = df['User ID'].map(staff.set_index('LAN ID')['Name'])
-                df['System1'] = dataframe.sheet_names[0].upper()
-                df['Cube'] = None
-                df['Dept'] = df['Department'].map(ref_code.set_index('Department')['Dept Code'])
-                df.reset_index(drop=True, inplace=True)
-                df = df[['Department', 'Dept', 'User ID', 'Name', 'System1', 'Cube']]
-                
-            elif key == 2:
-                # read the necessary data
-                # key 2 is for statsmart system
-                df = pd.read_excel(dataframe)
-                
-                # clean up staff data
-                staff['LAN ID'] = staff['LAN ID'].str.lower()
-                staff['LAN ID'] = staff['LAN ID'].str.strip()
-                
-                # clean user ID for white space and lower case
-                df['User ID'] = df['User ID'].str.lower()
-                df['User ID'] = df['User ID'].str.strip()
-                df['check'] = df['User ID'].isin(staff['LAN ID'])
-                
-                # auto fix wrong user ID
-                # We will check the availability of the Name column
-                # there are two persons with the same name
-                if 'Name' in df:
-                    unique_name = pd.DataFrame(staff['Name'].drop_duplicates(keep = 'first'))
-                    unique_name['LAN ID'] = staff['LAN ID']
-                    dfnew = df[df['check'] == False]
-                    dfnew['User ID'] = dfnew['Name'].map(unique_name.set_index('Name')['LAN ID'])
-                    
-                    # update the the check column
-                    # now the false positive should be corrected
-                    dfnew['check'] = dfnew['User ID'].isin(staff['LAN ID'])
-                    dfnew = dfnew[dfnew['check'] == True]
-                    df = pd.concat([df, dfnew], ignore_index=True)
-                
-                # adding details to the data
-                df = df[df['check'] == True]
-                df['Department'] = df['User ID'].map(staff.set_index('LAN ID')['Department'])
-                df['Name'] = df['User ID'].map(staff.set_index('LAN ID')['Name'])
-                df['System1'] = dataframe.sheet_names[0].upper()
-                temp = ref_cube.columns
-                df['Cube'] = df['role code'].map(ref_cube.set_index(temp[0])[temp[1]])
-                df['Dept'] = df['Department'].map(ref_code.set_index('Department')['Dept Code'])
-                df.reset_index(drop=True, inplace=True)
-                df = df[['Department', 'Dept', 'User ID', 'Name', 'System1', 'Cube']]
-            elif key == 3:
-                # key 3 is for stasmart cube system
-                # read the necessary data
-                df = pd.read_excel(dataframe)
-                
-                # clean up staff data
-                staff['LAN ID'] = staff['LAN ID'].str.lower()
-                staff['LAN ID'] = staff['LAN ID'].str.strip()
-                
-                df['User ID'] = df['User ID'].str.lower()
-                df['User ID'] = df['User ID'].str.strip()
-                df['check'] = df['User ID'].isin(staff['LAN ID'])
-                
-                # auto fix wrong user ID
-                # We will check the availability of the Name column
-                # there are two persons with the same name
-                if 'Name' in df:
-                    unique_name = pd.DataFrame(staff['Name'].drop_duplicates(keep = 'first'))
-                    unique_name['LAN ID'] = staff['LAN ID']
-                    dfnew = df[df['check'] == False]
-                    dfnew['User ID'] = dfnew['Name'].map(unique_name.set_index('Name')['LAN ID'])
-                    
-                    # update the the check column
-                    # now the false positive should be corrected
-                    dfnew['check'] = dfnew['User ID'].isin(staff['LAN ID'])
-                    dfnew = dfnew[dfnew['check'] == True]
-                    df = pd.concat([df, dfnew], ignore_index=True)
-                
-                # adding details to the data
-                df = df[df['check'] == True]
-                df['Department'] = df['User ID'].map(staff.set_index('LAN ID')['Department'])
-                df['Name'] = df['User ID'].map(staff.set_index('LAN ID')['Name'])
-                df['System1'] = dataframe.sheet_names[0].upper()
-                temp = ref_cube.columns
-                df['Cube'] = df['STATSMART CUBE'].map(ref_cube.set_index(temp[0])[temp[1]])
-                df['Dept'] = df['Department'].map(ref_code.set_index('Department')['Dept Code'])
-                df.reset_index(drop=True, inplace=True)
-                df = df[['Department', 'Dept', 'User ID', 'Name', 'System1', 'Cube']]
-            
-            elif key == 4:
-                # read the necessary data
-                df = pd.read_excel(dataframe)
-                
-                # clean up staff data
-                staff['LAN ID'] = staff['LAN ID'].str.lower()
-                staff['LAN ID'] = staff['LAN ID'].str.strip()
-                
-                df['User ID'] = df['User ID'].str.lower()
-                df['User ID'] = df['User ID'].str.strip()
-                
+                # conditional filtering
                 # filter the data, only enabled user will be considered
                 # we put a condition in case the status column is not available
                 if 'Status' in df.columns:
                     df = df[df['Status']== '*ENABLED']
-                    
-                df['check'] = df['User ID'].isin(staff['LAN ID'])
                 
-                # auto fix wrong user ID
-                # We will check the availability of the Name column
-                # there are two persons with the same name
-                if 'Name' in df:
-                    unique_name = pd.DataFrame(staff['Name'].drop_duplicates(keep = 'first'))
-                    unique_name['LAN ID'] = staff['LAN ID']
-                    dfnew = df[df['check'] == False]
-                    dfnew['User ID'] = dfnew['Name'].map(unique_name.set_index('Name')['LAN ID'])
-                    
-                    # update the the check column
-                    # now the false positive should be corrected
-                    dfnew['check'] = dfnew['User ID'].isin(staff['LAN ID'])
-                    dfnew = dfnew[dfnew['check'] == True]
-                    df = pd.concat([df, dfnew], ignore_index=True)
-                
-                # adding details to the data
-                df = df[df['check'] == True]
-                df['Department'] = df['User ID'].map(staff.set_index('LAN ID')['Department'])
-                df['Name'] = df['User ID'].map(staff.set_index('LAN ID')['Name'])
-                df['System1'] = dataframe.sheet_names[0].upper()
-                temp = ref_cube.columns
-                df['Cube'] = None
-                df['Dept'] = df['Department'].map(ref_code.set_index('Department')['Dept Code'])
-                df.reset_index(drop=True, inplace=True)
-                df = df[['Department', 'Dept', 'User ID', 'Name', 'System1', 'Cube']]
-            
-            elif key == 5:
-                # read the necessary data
-                df = pd.read_excel(dataframe)
-                
-                # clean up staff data
-                staff['LAN ID'] = staff['LAN ID'].str.lower()
-                staff['LAN ID'] = staff['LAN ID'].str.strip()
-                
-                # clean user ID for white space and lower case
-                df['User ID'] = df['User ID'].str.lower()
-                df['User ID'] = df['User ID'].str.strip()
-                
-                # filter the data, only enabled user will be considered
+                # filter the data only no flag use will be considered
                 # we put a condition in case the disable flag * column is not available
                 if 'Disable Flag *' in df.columns:
                     df = df[df['Disable Flag *'] == 'N']
-                    
+                
                 df['check'] = df['User ID'].isin(staff['LAN ID'])
                 
                 # auto fix wrong user ID
@@ -240,11 +86,191 @@ class BlueAutomata:
                 df['Department'] = df['User ID'].map(staff.set_index('LAN ID')['Department'])
                 df['Name'] = df['User ID'].map(staff.set_index('LAN ID')['Name'])
                 df['System1'] = dataframe.sheet_names[0].upper()
-                temp = ref_cube.columns
-                df['Cube'] = None
+                
+                # conditional filtering
+                # for system with column role code
+                if 'role code' in df.columns:
+                    temp = ref_cube.columns
+                    df['Cube'] = df['role code'].map(ref_cube.set_index(temp[0])[temp[1]])
+                elif 'STATSMART CUBE' in df.columns:
+                    temp = ref_cube.columns
+                    df['Cube'] = df['STATSMART CUBE'].map(ref_cube.set_index(temp[0])[temp[1]])
+                else:
+                    df['Cube'] = None
+                
                 df['Dept'] = df['Department'].map(ref_code.set_index('Department')['Dept Code'])
                 df.reset_index(drop=True, inplace=True)
                 df = df[['Department', 'Dept', 'User ID', 'Name', 'System1', 'Cube']]
+                
+                # unique filter
+                df = df.drop_duplicates(subset=['User ID', 'System1', 'Cube'], keep='first')
+                
+            #elif key == 2:
+                # read the necessary data
+                # key 2 is for statsmart system
+                #df = pd.read_excel(dataframe)
+                
+                # clean up staff data
+                #staff['LAN ID'] = staff['LAN ID'].str.lower()
+                #staff['LAN ID'] = staff['LAN ID'].str.strip()
+                
+                # clean user ID for white space and lower case
+                #df['User ID'] = df['User ID'].str.lower()
+                #df['User ID'] = df['User ID'].str.strip()
+                #df['check'] = df['User ID'].isin(staff['LAN ID'])
+                
+                # auto fix wrong user ID
+                # We will check the availability of the Name column
+                # there are two persons with the same name
+                #if 'Name' in df:
+                    #unique_name = pd.DataFrame(staff['Name'].drop_duplicates(keep = 'first'))
+                    #unique_name['LAN ID'] = staff['LAN ID']
+                    #dfnew = df[df['check'] == False]
+                    #dfnew['User ID'] = dfnew['Name'].map(unique_name.set_index('Name')['LAN ID'])
+                    
+                    # update the the check column
+                    # now the false positive should be corrected
+                    #dfnew['check'] = dfnew['User ID'].isin(staff['LAN ID'])
+                    #dfnew = dfnew[dfnew['check'] == True]
+                    #df = pd.concat([df, dfnew], ignore_index=True)
+                
+                # adding details to the data
+                #df = df[df['check'] == True]
+                #df['Department'] = df['User ID'].map(staff.set_index('LAN ID')['Department'])
+                #df['Name'] = df['User ID'].map(staff.set_index('LAN ID')['Name'])
+                #df['System1'] = dataframe.sheet_names[0].upper()
+                #temp = ref_cube.columns
+                #df['Cube'] = df['role code'].map(ref_cube.set_index(temp[0])[temp[1]])
+                #df['Dept'] = df['Department'].map(ref_code.set_index('Department')['Dept Code'])
+                #df.reset_index(drop=True, inplace=True)
+                #df = df[['Department', 'Dept', 'User ID', 'Name', 'System1', 'Cube']]
+            #elif key == 3:
+                # key 3 is for stasmart cube system
+                # read the necessary data
+                #df = pd.read_excel(dataframe)
+                
+                # clean up staff data
+                #staff['LAN ID'] = staff['LAN ID'].str.lower()
+                #staff['LAN ID'] = staff['LAN ID'].str.strip()
+                
+                #df['User ID'] = df['User ID'].str.lower()
+                #df['User ID'] = df['User ID'].str.strip()
+                #df['check'] = df['User ID'].isin(staff['LAN ID'])
+                
+                # auto fix wrong user ID
+                # We will check the availability of the Name column
+                # there are two persons with the same name
+                #if 'Name' in df:
+                    #unique_name = pd.DataFrame(staff['Name'].drop_duplicates(keep = 'first'))
+                    #unique_name['LAN ID'] = staff['LAN ID']
+                    #dfnew = df[df['check'] == False]
+                    #dfnew['User ID'] = dfnew['Name'].map(unique_name.set_index('Name')['LAN ID'])
+                    
+                    # update the the check column
+                    # now the false positive should be corrected
+                    #dfnew['check'] = dfnew['User ID'].isin(staff['LAN ID'])
+                    #dfnew = dfnew[dfnew['check'] == True]
+                    #df = pd.concat([df, dfnew], ignore_index=True)
+                
+                # adding details to the data
+                #df = df[df['check'] == True]
+                #df['Department'] = df['User ID'].map(staff.set_index('LAN ID')['Department'])
+                #df['Name'] = df['User ID'].map(staff.set_index('LAN ID')['Name'])
+                #df['System1'] = dataframe.sheet_names[0].upper()
+                #temp = ref_cube.columns
+                #df['Cube'] = df['STATSMART CUBE'].map(ref_cube.set_index(temp[0])[temp[1]])
+                #df['Dept'] = df['Department'].map(ref_code.set_index('Department')['Dept Code'])
+                #df.reset_index(drop=True, inplace=True)
+                #df = df[['Department', 'Dept', 'User ID', 'Name', 'System1', 'Cube']]
+            
+            #elif key == 4:
+                # read the necessary data
+                #df = pd.read_excel(dataframe)
+                
+                # clean up staff data
+                #staff['LAN ID'] = staff['LAN ID'].str.lower()
+                #staff['LAN ID'] = staff['LAN ID'].str.strip()
+                
+                #df['User ID'] = df['User ID'].str.lower()
+                #df['User ID'] = df['User ID'].str.strip()
+                
+                # filter the data, only enabled user will be considered
+                # we put a condition in case the status column is not available
+                #if 'Status' in df.columns:
+                    #df = df[df['Status']== '*ENABLED']
+                    
+                #df['check'] = df['User ID'].isin(staff['LAN ID'])
+                
+                # auto fix wrong user ID
+                # We will check the availability of the Name column
+                # there are two persons with the same name
+                #if 'Name' in df:
+                    #unique_name = pd.DataFrame(staff['Name'].drop_duplicates(keep = 'first'))
+                    #unique_name['LAN ID'] = staff['LAN ID']
+                    #dfnew = df[df['check'] == False]
+                    #dfnew['User ID'] = dfnew['Name'].map(unique_name.set_index('Name')['LAN ID'])
+                    
+                    # update the the check column
+                    # now the false positive should be corrected
+                    #dfnew['check'] = dfnew['User ID'].isin(staff['LAN ID'])
+                    #dfnew = dfnew[dfnew['check'] == True]
+                    #df = pd.concat([df, dfnew], ignore_index=True)
+                
+                # adding details to the data
+                #df = df[df['check'] == True]
+                #df['Department'] = df['User ID'].map(staff.set_index('LAN ID')['Department'])
+                #df['Name'] = df['User ID'].map(staff.set_index('LAN ID')['Name'])
+                #df['System1'] = dataframe.sheet_names[0].upper()
+                #temp = ref_cube.columns
+                #df['Cube'] = None
+                #df['Dept'] = df['Department'].map(ref_code.set_index('Department')['Dept Code'])
+                #df.reset_index(drop=True, inplace=True)
+                #df = df[['Department', 'Dept', 'User ID', 'Name', 'System1', 'Cube']]
+            
+            #elif key == 5:
+                # read the necessary data
+                #df = pd.read_excel(dataframe)
+                
+                # clean up staff data
+                #staff['LAN ID'] = staff['LAN ID'].str.lower()
+                #staff['LAN ID'] = staff['LAN ID'].str.strip()
+                
+                # clean user ID for white space and lower case
+                #df['User ID'] = df['User ID'].str.lower()
+                #df['User ID'] = df['User ID'].str.strip()
+                
+                # filter the data, only enabled user will be considered
+                # we put a condition in case the disable flag * column is not available
+                #if 'Disable Flag *' in df.columns:
+                    #df = df[df['Disable Flag *'] == 'N']
+                    
+                #df['check'] = df['User ID'].isin(staff['LAN ID'])
+                
+                # auto fix wrong user ID
+                # We will check the availability of the Name column
+                # there are two persons with the same name
+                #if 'Name' in df:
+                    #unique_name = pd.DataFrame(staff['Name'].drop_duplicates(keep = 'first'))
+                    #unique_name['LAN ID'] = staff['LAN ID']
+                    #dfnew = df[df['check'] == False]
+                    #dfnew['User ID'] = dfnew['Name'].map(unique_name.set_index('Name')['LAN ID'])
+                    
+                    # update the the check column
+                    # now the false positive should be corrected
+                    #dfnew['check'] = dfnew['User ID'].isin(staff['LAN ID'])
+                    #dfnew = dfnew[dfnew['check'] == True]
+                    #df = pd.concat([df, dfnew], ignore_index=True)
+                
+                # adding details to the data
+                #df = df[df['check'] == True]
+                #df['Department'] = df['User ID'].map(staff.set_index('LAN ID')['Department'])
+                #df['Name'] = df['User ID'].map(staff.set_index('LAN ID')['Name'])
+                #df['System1'] = dataframe.sheet_names[0].upper()
+                #temp = ref_cube.columns
+                #df['Cube'] = None
+                #df['Dept'] = df['Department'].map(ref_code.set_index('Department')['Dept Code'])
+                #df.reset_index(drop=True, inplace=True)
+                #df = df[['Department', 'Dept', 'User ID', 'Name', 'System1', 'Cube']]
             
             elif key == 6:
                 # read the necessary data
@@ -319,6 +345,9 @@ class BlueAutomata:
                 
                 # merge the two dataframes
                 df = pd.concat([df1, df2], ignore_index=True)
+                
+                # perform unique filtering
+                df = df.drop_duplicates(subset=['User ID', 'System1', 'Cube'], keep='first')
             
             else:
                 # read the necessary data
@@ -372,7 +401,12 @@ class BlueAutomata:
                     df.reset_index(drop=True, inplace=True)
                     df = df[['Department', 'Dept', 'User ID', 'Name', 'System1', 'Cube']]
                     dfs.append(df)
+                
+                # merge the dataframes together
                 df = pd.concat([df for df in dfs], ignore_index=True)
+                
+                # perform unique filtering
+                df = df.drop_duplicates(subset=['User ID', 'System1', 'Cube'], keep='first')
                     
                     
             #print(df.head())
@@ -396,18 +430,18 @@ class BlueAutomata:
                         if self.name_code[j] == 1:
                             df = dataCleaning(excelFile, self.staff_data, self.checklist, key = 1)
                             dfs.append(df)
-                        elif self.name_code[j] == 2:
-                            df = dataCleaning(excelFile, self.staff_data, self.checklist, key = 2)
-                            dfs.append(df)
-                        elif self.name_code[j] == 3:
-                            df = dataCleaning(excelFile, self.staff_data, self.checklist, key = 3)
-                            dfs.append(df)
-                        elif self.name_code[j] == 4:
-                            df = dataCleaning(excelFile, self.staff_data, self.checklist, key = 4)
-                            dfs.append(df)
-                        elif self.name_code[j] == 5:
-                            df = dataCleaning(excelFile, self.staff_data, self.checklist, key = 5)
-                            dfs.append(df)
+                        #elif self.name_code[j] == 2:
+                            #df = dataCleaning(excelFile, self.staff_data, self.checklist, key = 2)
+                            #dfs.append(df)
+                        #elif self.name_code[j] == 3:
+                            #df = dataCleaning(excelFile, self.staff_data, self.checklist, key = 3)
+                            #dfs.append(df)
+                        #elif self.name_code[j] == 4:
+                            #df = dataCleaning(excelFile, self.staff_data, self.checklist, key = 4)
+                            #dfs.append(df)
+                        #elif self.name_code[j] == 5:
+                            #df = dataCleaning(excelFile, self.staff_data, self.checklist, key = 5)
+                            #dfs.append(df)
                         elif self.name_code[j] == 6:
                             df = dataCleaning(excelFile, self.staff_data, self.checklist, key = 6)
                             dfs.append(df)

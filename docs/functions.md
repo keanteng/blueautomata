@@ -138,4 +138,4 @@ start.templatetize()
 !!! tips
     Go to this notebook section to see the code in action using Jupyter notebook
 
-## Reporting Tools (TBA)
+## 4. Reporting Tools

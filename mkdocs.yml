@@ -8,6 +8,7 @@ site_description: 'A documentation for the package - BlueAutomata'
 # navigation
 nav:
   - Home: index.md
+  - Case Study: casestudy.md
   - Concepts: concepts.md
   - Functions: functions.md
   - Notebooks:
@@ -102,6 +103,7 @@ markdown_extensions:
       custom_checkbox: true
   - pymdownx.tilde
 
+# plugins for jupyter notebook (might slow down site launch)
 plugins:
   - mkdocs-jupyter:
       include_source: True
