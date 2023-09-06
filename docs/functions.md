@@ -138,4 +138,50 @@ start.templatetize()
 !!! tips
     Go to this notebook section to see the code in action using Jupyter notebook
 
-## 4. Reporting Tools
+## 4. Output Foresight
+This package also provides function for you to take a preview at the output with a summary report based on your input parameter, for example:
+
+=== "Output Foresight"
+    System | Matched IDs | Unmatched IDs | Total IDs
+    :-- | -- | -- | --:
+    GOOG | 123 | 3 | 126
+    NFLX | 24 | 5 | 29
+    SPOT | 45 | 0 | 45
+
+From the table, you can see the number of `Matched IDs` that will be compiled when you execute the `BlueAutomata` function. To produce the output report, you can call the class `AutomataReport` that takes in 5 parameters:
+
+```py
+AutomataReport(
+    folder_path = 'PATH',
+    checklist = 'PATH',
+    staff_data = 'PATH,
+    name_key = [],
+    name_code = [],
+)
+```
+
+Inside the `Automata Report` class, there is a function `automata_report_summary` that will produce the output summary report:
+
+```py
+automata_report_summary(self)
+```
+
+### 4.1 Usage Example
+Producing the output summary report
+
+```py title='Example'
+df = AutomataReport(
+    folder_path = 'data/fakesystem',
+    checklist = 'data/checklist.xlsx',
+    staff_data = 'data/fake_hr_data.xlsx',
+    name_key = ['NASDAQ', 'KLSE', 'NYSE', 'TSE'],
+    name_code = [1,1,1,1],
+)
+
+df.automata_report_summary()
+```
+
+!!! tips
+    Go to this notebook section to see the code in action using Jupyter notebook
+
+## 5. Inconsistent Data Entry

@@ -5,10 +5,11 @@
 ![Static Badge](https://img.shields.io/pypi/v/BlueAutomata)
 ![Static Badge](https://static.pepy.tech/badge/BlueAutomata)
 ![Static Badge](https://img.shields.io/badge/license-MIT-blue)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 
 <figure markdown>
-  ![Image title](docs/assets/logo.png){ width="200" }
+  ![Image title](images/../assets/logo.png){ width="200" }
   <figcaption>BlueAutomata</figcaption>
 </figure>
 
@@ -19,19 +20,39 @@ Reporting is common in financial institution to ensure their operations are comp
 Thus, `blueautomata` is introduced as a package to provide a framework to ease the workflow for reporting in a company. This package aims **to automate the workflow of cleaning data, compiling data and preparing the data in reportable format on Excel by auto-calling the corresponding VBA function**.
 
 ``` mermaid
+---
+title: Package Algorithm
+---
 flowchart TD
     subgraph main
-    A[Raw Data] --> B[Cleaning];
-    C[Compiling Cleaned Data] --> D[Organize Data By Category]
+    A[Raw Data] --> B{Cleaning}
+    C[Compiling Cleaned Data] --No--> D[Organize Data By Category]
     D[Organize Data By Category] --> E[Create Template]
     end
 
-    subgraph sub
+    subgraph sub1
     B[Cleaning] --> B1[User ID Matching]
     B1[User ID Matching] --> B2[User Name Reverse Lookup]
     B2[User Name Reverse Lookup] --> B3[Conditional Filterings]
-    B3[Conditional Filterings] --> C[Compiling Cleaning Data]
+    B3[Conditional Filterings] --> B4[Granularity Provisioning]
+    B4[Granularity Provisioning] --> C[Compiling Cleaned Data]
     end
+
+    subgraph sub2
+    B[Cleaning] --If Required--> B11[Fuzzywuzzy Matching]
+    B11[fuzzywuzzy Matching] --> B12[Update Data]
+    B12[Update Data]--> B13[sub1 Process]
+    B13[sub1 Process] --> C[Compiling Cleaning Data]
+    end
+
+    subgraph sub3
+    B[Cleaning] --If Required--> B21[Output Foresight Reporting]
+    end
+
+    subgraph sub4
+    C[Compiling Cleaned Data] --Yes--> C1[Data Labels Checker]
+    C1[Data Labels Checker] --> D[Output Data By Category]
+    end 
 ```
 
 ## Installation
@@ -47,9 +68,9 @@ pip install git+https://github.com/keanteng/blueautomata
 
 ## Package Functions
 1. Data Compilation 
-   1. Data cleaning such as renaming columns and conditional filtering
-   2. Data lookup and matching support
-   3. Auto reverse lookup to update mislabelled cells
-   4. Auto `fuzzywuzzy` matching for similar data
+      1. Data cleaning such as renaming columns and conditional filtering
+      2. Data lookup and matching support
+      3. Auto reverse lookup to update mislabelled cells
+      4. Auto [`fuzzywuzzy`](https://pypi.org/project/fuzzywuzzy/) matching and update for similar data
 2. Exports large dataset into categorized files 
 3. Template creation for categorized files (report template) by calling written macros on Excel
