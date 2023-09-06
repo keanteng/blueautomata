@@ -78,8 +78,58 @@ Travis is quick to find patterns in his collected raw data, he noticed that alth
 Moreover, although staff data does not tell him about the department code, but it does tell him the staff department name where he can then make reference to his checklist data for the department code. Well, he can also reference the `cube` code on his checklist for the name of the code.
 
 ### Solution
-He formulates a plan for his reporting workflows:
+He formulates a plan for his reporting workflows and this algorithm is able to process a majority of his datasets:
 
+```mermaid
+---
+title: Algorithm1
+---
+    flowchart TD
+    subgraph LOOP
+        subgraph for_each_file
+        direction TB
+        A[Match stock market data IDs with staff data IDs] --> B[Conditional Filtering]
+        B[Conditional Filtering] --> C[Update the staff name and department]
+        C[Update the staff name and department] --> D[Match Department with Department Code]
+        D[Match Department with Department Code] --> E[Match Cube with Cube Name]
+        end
+    end
 
+```
+
+But there are still some datasets that still not able to process by his program, so Travis decides to devise a separate algorithm for some of the non-routine datasets.
+
+## Some Worse Case
+!!! warning
+    Real world data does not appear to be that clean, let's take a look at some non-routine cases
+
+### Inconsistent Data Entry
+Travis noticed that on one of the data he collected from `HKSE` the name of the staff does not match with the company staff directory, for example "Muhamad Ali bin Abu" is named as "Muhamad Ali Abu"; "Lucas Den Shi Ki" is named as "Lucas Shi Ki Den". And in the dataset, there is no IDs column and only name column:
+
+=== "HKSE"
+    Name |
+    :-- |
+    Lucas Den Shi Ki |
+    Muhamad Ali Abu |
+    Jef ADriaN |
+
+To resolve this, he has to rely on a metric, called the [Levinshtein](https://en.wikipedia.org/wiki/Levenshtein_distance) ratio that computes the difference between two sequences. Generally if two sequences are exactly the same, the Levinshtein ratio will be 100 and when they gradually differ more in terms of arrangement and alphabets the ratio will decrease. 
+
+What he will do then is he will match all the names in the staff data against the similar names, if the Levinshtein ratio is higher than 90, then the similar names will be replaced with the names in the staff data.
+
+```mermaid
+---
+title: Algorithm2
+---
+    flowchart TD
+    subgraph LOOP
+        subgraph for_each_staff_name
+        direction TB
+        A[Compute Levinshtein ratio against all other names] --> B[Update other names if ratio > 90]
+        end
+    end
+    B[Update other names if ratio > 90] --"when_done"--> C[Back to Algorithm1 but with name matching to update IDs]
+
+```
 
 [^1]: The raw data shown are generated, and it might look clean to work with, and real world data is often messier and not well organized. The only clean data that Travis have were the staff and checklist data.

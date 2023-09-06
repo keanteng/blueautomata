@@ -24,9 +24,11 @@ Travis is good at math and logical thinking, so he knows for resigned employees 
 - The staff's name
 - The staff's assigned stock
 - The staff's status (resigned or not)
+- The staff's cube.[^4]
 
 That approach, allows him to work quickly to compile the data he collects from the stock markets, what he will do then, is to create files for each stock category to see where they are traded around the world - of course with a nice looking template before submitting for audit review after the quarter ends!
 
 [^1]: The case study is purely a creative endeavor and should not be interpreted as a representation of reality. Any opinions, beliefs, or ideologies expressed within the story do not reflect those of the author or any other entity mentioned herein.
 [^2]: This story is a work of fiction. Names, characters, places, and incidents are the products of the author's imagination or are used fictitiously. Any resemblance to actual events, locales, or persons, living or dead, is entirely coincidental.
 [^3]: It is year 2055, the markets and the world might look different that what we see today.
+[^4]: Cube is a special code available to some staffs when they sell their stock, In the concepts page, checklist 2, you can see that each code will correspond to a movie name.

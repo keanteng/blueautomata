@@ -1,19 +1,20 @@
 # Package Functions 📦
 
-## Introduction
+## 0. Introduction
 Before using `blueautomata`, you must get 4 types of parameters for the function to make reference:
 
-- **Folder path**: 
-    - The folder storing all the raw data that you want to compile
-- **References file path**: 
-    - File containing all the company staff details
-    - File containing list of abbreviations and their full name
-- **Search key**:
-    - The name key that you used to identify the file category in your raw data folder
-- **Search code**: 
-    - The type of file characteristics that you stored in your raw data folder
+=== "Parameters"
+    - **Folder path**: 
+        - The folder storing all the raw data that you want to compile
+    - **References file path**: 
+        - File containing all the company staff details
+        - File containing list of abbreviations and their full name
+    - **Search key**:
+        - The name key that you used to identify the file category in your raw data folder
+    - **Search code**: 
+        - The type of file characteristics that you stored in your raw data folder
 
-### Search Code Reference
+### 0.1 Search Code Reference
 
 In general, there are 7 types of search code:
 

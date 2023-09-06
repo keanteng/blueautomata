@@ -11,6 +11,7 @@ nav:
   - Case Study: casestudy.md
   - Concepts: concepts.md
   - Functions: functions.md
+  - VBA/Macros: vba_integrate.md
   - Notebooks:
     - notebooks/ideation.ipynb
 
