@@ -8,6 +8,7 @@ When running batch export function make sure
 """
 
 import pandas as pd
+import os
 
 
 class BatchExport:
@@ -18,15 +19,16 @@ class BatchExport:
     def batch_export(self):
         # get the name of department and department code
         dept_name = self.masterlist["Department"].unique()
-        dept_code = self.masterlist["Dept"].unique()
+        #dept_code = self.masterlist["Dept"].unique()
 
         for i in range(0, len(dept_name)):
             # filter the dataframe by dept
             filter = self.masterlist[self.masterlist["Department"] == dept_name[i]]
+            filter.reset_index(drop=True, inplace=True)
             # name the file using department code
-            filecode = dept_code[i]
+            filecode = filter["Dept"][0]
             # export the file
-            filter.to_excel(self.destination + "/" + filecode + ".xlsx", index=True)
+            filter.to_excel(self.destination + "/" + str(filecode) + ".xlsx", index=True)
 
         # print the status
         print("Export Completed")

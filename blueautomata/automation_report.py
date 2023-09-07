@@ -75,7 +75,7 @@ class AutomataReport:
                     dfnew = dfnew[dfnew["check"] == True]
                     df = pd.concat([df, dfnew], ignore_index=True)
 
-                    df["System1"] = dataframe.sheet_names[0].upper()
+                df["System1"] = dataframe.sheet_names[0].upper()
 
                 # only statsmartcube need unique filtering
                 if "STATSMART CUBE" in df.columns:
@@ -523,26 +523,26 @@ class AutomataReport:
                                 excelFile, self.staff_data, self.checklist, key=1
                             )
                             dfs.append(df)
-                        elif self.name_code[j] == 2:
-                            df = report_summary(
-                                excelFile, self.staff_data, self.checklist, key=2
-                            )
-                            dfs.append(df)
-                        elif self.name_code[j] == 3:
-                            df = report_summary(
-                                excelFile, self.staff_data, self.checklist, key=3
-                            )
-                            dfs.append(df)
-                        elif self.name_code[j] == 4:
-                            df = report_summary(
-                                excelFile, self.staff_data, self.checklist, key=4
-                            )
-                            dfs.append(df)
-                        elif self.name_code[j] == 5:
-                            df = report_summary(
-                                excelFile, self.staff_data, self.checklist, key=5
-                            )
-                            dfs.append(df)
+                        #elif self.name_code[j] == 2:
+                            #df = report_summary(
+                                #excelFile, self.staff_data, self.checklist, key=2
+                            #)
+                            #dfs.append(df)
+                        #elif self.name_code[j] == 3:
+                            #df = report_summary(
+                                #excelFile, self.staff_data, self.checklist, key=3
+                            #)
+                            #dfs.append(df)
+                        #elif self.name_code[j] == 4:
+                            #df = report_summary(
+                                #excelFile, self.staff_data, self.checklist, key=4
+                            #)
+                            #dfs.append(df)
+                        #elif self.name_code[j] == 5:
+                            #df = report_summary(
+                                #excelFile, self.staff_data, self.checklist, key=5
+                            #)
+                            #dfs.append(df)
                         elif self.name_code[j] == 6:
                             df = report_summary(
                                 excelFile, self.staff_data, self.checklist, key=6

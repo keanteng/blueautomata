@@ -24,20 +24,8 @@ class SystemCubeChecker:
         for i in range(0, len(df)):
             for j in range(0, len(self.system_to_check)):
                 if df["System1"][i] == self.system_to_check[j]:
-                    df["System1"][i] = self.system_to_check[j]
-                    df["Cube1"][i] = self.cube_to_assign
-                elif df["System1"][i] == self.system_to_check[j]:
-                    df["System1"][i] = self.system_to_assign[j]
-                    df["Cube1"][i] = self.cube_to_assign
-                elif df["System1"][i] == self.system_to_check[j]:
-                    df["System1"][i] = self.system_to_asssign[j]
-                    df["Cube1"][i] = self.cube_to_assign
-                elif df["System1"] == self.system_to_check[j]:
-                    df["System1"][i] = self.system_to_check[j]
-                    df["Cube1"][i] = self.cube_to_assign
-                elif df["System1"][i] == self.system_to_check[j]:
-                    df["System1"][i] = self.system_to_check[j]
-                    df["Cube1"][i] = self.cube_to_assign
+                    df["System1"][i] = self.cube_to_assign
+                    df["Cube"][i] = self.system_to_check[j]
                 else:
                     pass
         return df
