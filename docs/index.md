@@ -2,8 +2,8 @@
 
 [![](https://img.shields.io/badge/project-website-brightgreen)](https://keanteng.github.io/blueautomata/)
 ![Static Badge](https://img.shields.io/badge/python-3.11-blue)
-![Static Badge](https://img.shields.io/pypi/v/BlueAutomata)
-![Static Badge](https://static.pepy.tech/badge/BlueAutomata)
+![Static Badge](https://img.shields.io/pypi/v/blueautomata)
+![Static Badge](https://static.pepy.tech/badge/blueautomata)
 ![Static Badge](https://img.shields.io/badge/license-MIT-blue)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
