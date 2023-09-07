@@ -1,4 +1,3 @@
-LICENSE
 LICENSE.txt
 README.md
 setup.cfg
@@ -7,6 +6,8 @@ BlueAutomata/__init__.py
 BlueAutomata/automation_report.py
 BlueAutomata/batch_export.py
 BlueAutomata/data_compilation.py
+BlueAutomata/inconsistency.py
+BlueAutomata/system_cube.py
 BlueAutomata/to_vba.py
 BlueAutomata.egg-info/PKG-INFO
 BlueAutomata.egg-info/SOURCES.txt

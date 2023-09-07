@@ -1,2 +1,4 @@
 pandas
 win32com.client
+fuzzywuzzy
+python-Levenshtein
