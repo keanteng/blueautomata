@@ -1,5 +1,5 @@
 LICENSE.txt
-README.md
+README.rst
 setup.cfg
 setup.py
 BlueAutomata/__init__.py

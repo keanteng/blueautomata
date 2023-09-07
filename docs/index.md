@@ -58,12 +58,12 @@ flowchart TD
 ## Installation
 - On Windows Terminal
 ```py title='Terminal'
-py -m pip install blueautomata
+py -m pip install BlueAutomata
 ```
 
 - Latest development version
 ```py title='Terminal'
-pip install git+https://github.com/keanteng/blueautomata
+pip install git+https://github.com/keanteng/BlueAutomata
 ```
 
 ## Package Functions
