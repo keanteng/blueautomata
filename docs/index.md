@@ -70,7 +70,7 @@ pip install git+https://github.com/keanteng/blueautomata
 1. Data Compilation 
       1. Data cleaning such as renaming columns and conditional filtering
       2. Data lookup and matching support
-      3. Auto reverse lookup to update mislabelled cells
-      4. Auto [`fuzzywuzzy`](https://pypi.org/project/fuzzywuzzy/) matching and update for similar data
+         1. Auto reverse lookup to update mislabelled cells
+      3. Auto [`fuzzywuzzy`](https://pypi.org/project/fuzzywuzzy/) matching and update for similar data
 2. Exports large dataset into categorized files 
 3. Template creation for categorized files (report template) by calling written macros on Excel

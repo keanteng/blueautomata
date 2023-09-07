@@ -97,7 +97,7 @@ title: Algorithm1
 
 ```
 
-But there are still some datasets that still not able to process by his program, so Travis decides to devise a separate algorithm for some of the non-routine datasets.
+But there are still some datasets that still not able to process by his program, so Travis decides to devise a separate algorithm for some non-routine datasets.
 
 ## Some Worse Case
 !!! warning
@@ -109,9 +109,16 @@ Travis noticed that on one of the data he collected from `HKSE` the name of the 
 === "HKSE"
     Name |
     :-- |
-    Lucas Den Shi Ki |
+    Den Shi Ki Lucas |
     Muhamad Ali Abu |
-    Jef ADriaN |
+    Jef A_DriaN |
+
+=== "Actual Name"
+    Name |
+    :-- |
+    Lucas Shi Ki Den |
+    Muhamad Ali  bin Abu |
+    Jef Adrian |
 
 To resolve this, he has to rely on a metric, called the [Levinshtein](https://en.wikipedia.org/wiki/Levenshtein_distance) ratio that computes the difference between two sequences. Generally if two sequences are exactly the same, the Levinshtein ratio will be 100 and when they gradually differ more in terms of arrangement and alphabets the ratio will decrease. 
 
@@ -131,5 +138,44 @@ title: Algorithm2
     B[Update other names if ratio > 90] --"when_done"--> C[Back to Algorithm1 but with name matching to update IDs]
 
 ```
+
+## Finalizing Report
+
+### Time For Export
+With all the data being cleaned and labelled, Travis can now start to prepare for his reports. Since all the data are stored as one dataset, he would need to export it as individual Excel files for each stock category:
+
+```mermaid
+---
+title: Algorithm3
+---
+    flowchart TD
+    subgraph LOOP
+    A[Filter by department] --> B[Filtered data with one department]
+    B[Filtered data with one department] --> C[Export to Excel]
+    end
+
+```
+
+Now Travis gets all the files he wants, but these files are raw, he'll use VBA to add some formatting to them so that they look nice before submitting to his boss. The good news is he don't really need to do a loop to apply the macros he wrote because the macro can run on the entire specify folder:
+
+```mermaid
+---
+title: Algorithm4
+---
+    flowchart TD
+    A[Get folder that stores all the Excel files] --> B[Apply macros for each file]
+
+```
+
+### The Output
+Here is the output that Travis will get for each of his stock category:
+
+<figure markdown>
+  ![Image title](images/../assets/concept.png)
+  <figcaption>Before using macros and after using macros</figcaption>
+</figure>
+
+!!! info
+    That's the end for the interesting story with Travis. Check out the next page and see the functions that powered Travis' workflows.
 
 [^1]: The raw data shown are generated, and it might look clean to work with, and real world data is often messier and not well organized. The only clean data that Travis have were the staff and checklist data.

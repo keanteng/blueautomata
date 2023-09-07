@@ -13,7 +13,12 @@ nav:
   - Functions: functions.md
   - VBA/Macros: vba_integrate.md
   - Notebooks:
-    - notebooks/ideation.ipynb
+    - notebooks/01BlueAutomata.ipynb
+    - notebooks/02AutomataReport.ipynb
+    - notebooks/03Inconsistency.ipynb
+    - notebooks/04SystemCube.ipynb
+    - notebooks/05BatchExport.ipynb
+    - notebooks/06AutomateVBA.ipynb
 
 # site theme
 theme:

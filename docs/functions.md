@@ -16,16 +16,12 @@ Before using `blueautomata`, you must get 4 types of parameters for the function
 
 ### 0.1 Search Code Reference
 
-In general, there are 7 types of search code:
+In general, there are 3 types of search code:
 
 | Code |  Characteristics |
 | :--- | -----------------------------------------------------------------------: |
-| 1    |                      Excel file that can be used directly without filter |
-| 2    |        Excel file that can be used directly with one filter on column `` |
-| 3    |        Excel file that can be used directly with one filter on column `` |
-| 4    |        Excel file that can be used directly with one filter on column `` |
-| 5    |        Excel file that can be used directly with one filter on column `` |
-| 6    |       Excel file that can be used directly with two filters on column `` |
+| 1    |                      Excel file that can be used directly with or without filter[^1] |
+| 6    |       Excel file that can be used directly with two filters on column `RBC Access` and `IFAS Access` |
 | 10   | Excel file with multiple sheets that can be used directly without filter |
 
 ## 1. Data Compilation
@@ -186,3 +182,92 @@ df.automata_report_summary()
     Go to this notebook section to see the code in action using Jupyter notebook
 
 ## 5. Inconsistent Data Entry
+A special class named `Inconsistency` is created to deal with Excel file that:
+
+- Does not have a `User ID` column
+- Have a `Name` column, but the names are written in format different from the staff data. Even for files with only `Name` column and all the names are correct but no `User ID`, this class is still able to compile the data.
+    - For example: "Davida Faris Hill" and "faris Hill Davida" are the same person
+
+This class takes in 4 parameters, as follows:
+
+```py
+Inconsistency(
+    filepath = 'PATH',
+    staff_data = 'PATH',
+    checklist = 'PATH',
+    sheet_number = 1
+)
+```
+
+Inside the `Inconsistency` class there is a function called `fix_inconsistency` that will automatically rectify the wrong names and update the dataset with information such as `User ID`, `Department`, `Dept Code`, `System1` and `Cube`
+
+```py
+fix_inconsistency(self)
+```
+
+Of course, there will be time all the wrong names could not be fixed, you can cal the `inconsistency_report` function to extract out the name that could not be fixed:
+
+```py
+inconsistency_report(self)
+```
+
+### 5.1 Usage Example
+- Compiling data
+
+```py title='Example'
+test = Inconsistency(
+    filepath = 'PATH',
+    staff_data = 'PATH',
+    checklist = 'PATH',
+    sheet_number = 1
+)
+
+df = test.fix_inconsistency()
+```
+
+- Get summary for unmatched staff names
+
+```py title='Example'
+test = Inconsistency(
+    filepath = 'PATH',
+    staff_data = 'PATH',
+    checklist = 'PATH',
+    sheet_number = 1
+)
+
+df = test.inconsistency_report()
+```
+
+## 6. System & Cube Checking
+This package also contains a class called `SystemCubeChecker` to update the wrongly assigned system and cube. In other words, it will update the entries where the cube names are put as system names by moving the cube names to the cube column and re-assigning a system name to them. The class takes in 3 parameters:
+
+```py
+SystemCubeChecker(
+    masterlistpath = 'PATH',
+    system_to_check = [],
+    cube_to_assign = [],
+)
+```
+
+You can use the `system_cube_update` function to perform the reassignment:
+
+```py
+system_cube_update(self)
+```
+
+### 6.1 Usage Example
+Here is how you can perform the reassignment:
+
+```py title='Example'
+test = SystemCubeChecker(
+    masterlistpath = 'C:/Users/limzi/OneDrive/Desktop',
+    system_to_check= ['GOOG', 'NFLX'],
+    cube_to_assign='KLSE'
+)
+
+test.system_cube_update()
+```
+
+
+
+[^1]: For with filter Excel file, the filter only applies to column with the following names: `status` and `Disable Flag *`

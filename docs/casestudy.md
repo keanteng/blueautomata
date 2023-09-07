@@ -16,7 +16,7 @@ Every month, Travis needs to submit a report for auditing where he needs to trac
 ### Time For Action
 For Travis to complete his report he would first need to get hold of the stocks' data that are traded by the firms' employees in worldwide stock markets. He then stored the transactions record for each stock market in an individual file. Since there is no well-build system for the data collection, each of the file looks different, some contains more columns than the other, some with missing information such as employees' name and some even contains wrong employee IDs and outdated information. 
 
-Travis realizes that he would need some other data to validate his collected data, so he reached out to his friend, James Claude Diamond from the Fake Human Resources Department to get the latest copy of the staff data where it contains the staff's assigned stocks and stock market that they can sell their stock. He also compiles a copy of checklist data by himself to match up the stock code and stock market code to their respective stock name and stock market name.
+Travis realizes that he would need some other data to validate his collected data, so he reached out to his friend, James Claude Diamond from the Fake Human Resources Department[^4] to get the latest copy of the staff data where it contains the staff's assigned stocks and stock market that they can sell their stock. He also compiles a copy of checklist data by himself to match up the stock code and stock market code to their respective stock name and stock market name.
 
 ### Think Different
 Travis is good at math and logical thinking, so he knows for resigned employees their names will not be in the staff dataset. In fact, what he will do is he will match the staff ID from the stock market data he collected with the staff data to obtain information as follows:
@@ -24,11 +24,12 @@ Travis is good at math and logical thinking, so he knows for resigned employees 
 - The staff's name
 - The staff's assigned stock
 - The staff's status (resigned or not)
-- The staff's cube.[^4]
+- The staff's cube[^5]
 
 That approach, allows him to work quickly to compile the data he collects from the stock markets, what he will do then, is to create files for each stock category to see where they are traded around the world - of course with a nice looking template before submitting for audit review after the quarter ends!
 
 [^1]: The case study is purely a creative endeavor and should not be interpreted as a representation of reality. Any opinions, beliefs, or ideologies expressed within the story do not reflect those of the author or any other entity mentioned herein.
 [^2]: This story is a work of fiction. Names, characters, places, and incidents are the products of the author's imagination or are used fictitiously. Any resemblance to actual events, locales, or persons, living or dead, is entirely coincidental.
 [^3]: It is year 2055, the markets and the world might look different that what we see today.
-[^4]: Cube is a special code available to some staffs when they sell their stock, In the concepts page, checklist 2, you can see that each code will correspond to a movie name.
+[^4]: In this human resource department, the staff uses a generator to generate fake identities for the staff
+[^5]: Cube is a special code available to some staffs when they sell their stock, In the concepts page, checklist 2, you can see that each code will correspond to a movie name.
