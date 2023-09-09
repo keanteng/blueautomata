@@ -5,7 +5,7 @@ from setuptools import find_packages, setup
 setup(
   name = 'blueautomata',         # How you named your package folder (MyLib)
   packages = ['blueautomata'],   # Chose the same as "name"
-  version = '0.8',      # Start with a small number and increase it with every change you make
+  version = '0.9',      # Start with a small number and increase it with every change you make
   license='MIT',        # Chose a license from here: https://help.github.com/articles/licensing-a-repository
   description = 'A package to ease the workflow for reporting in a company',   # Give a short description about your library
   author = 'keanteng',                   # Type in your name

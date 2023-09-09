@@ -512,11 +512,11 @@ class BlueAutomata:
     # )
 
 
-test = BlueAutomata(
-    folder_path=r"C:\Users\Khor Kean Teng\Downloads\AUP Automata\rawdata",
-    checklist="rawdata/Department Checklist.xlsx",
-    staff_data="rawdata/stafflist.xlsx",
-    name_key=["RBCIFAS"],
-    name_code=[6],
-)
-test.automata_execution()
+#test = BlueAutomata(
+    #folder_path=r"C:\Users\Khor Kean Teng\Downloads\AUP Automata\rawdata",
+    #checklist="rawdata/Department Checklist.xlsx",
+    #staff_data="rawdata/stafflist.xlsx",
+    #name_key=["RBCIFAS"],
+    #name_code=[6],
+#)
+#test.automata_execution()

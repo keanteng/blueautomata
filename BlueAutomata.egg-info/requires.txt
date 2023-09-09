@@ -1,4 +1,0 @@
-pandas
-pywin32
-fuzzywuzzy
-python-Levenshtein
