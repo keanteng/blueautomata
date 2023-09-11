@@ -43,6 +43,7 @@ theme:
     - content.code.copy
     - content.code.select
     - content.action.edit
+    - content.action.view
   logo: assets/logo.png
   favicon: assets/favicon.png
 
@@ -113,6 +114,7 @@ markdown_extensions:
 plugins:
   - git-revision-date
   - git-revision-date-localized:
+      fallback_to_build_date: true
       enable_creation_date: true
       type: timeago
   - mkdocs-jupyter:
