@@ -1,0 +1,16 @@
+LICENSE.txt
+README.md
+setup.cfg
+setup.py
+blueautomata/__init__.py
+blueautomata/automation_report.py
+blueautomata/batch_export.py
+blueautomata/data_compilation.py
+blueautomata/inconsistency.py
+blueautomata/system_cube.py
+blueautomata/to_vba.py
+blueautomata.egg-info/PKG-INFO
+blueautomata.egg-info/SOURCES.txt
+blueautomata.egg-info/dependency_links.txt
+blueautomata.egg-info/requires.txt
+blueautomata.egg-info/top_level.txt

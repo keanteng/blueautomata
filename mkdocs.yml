@@ -20,6 +20,8 @@ nav:
     - notebooks/05BatchExport.ipynb
     - notebooks/06AutomateVBA.ipynb
 
+edit_uri: edit/main/docs/
+
 # site theme
 theme:
   name: material
@@ -114,7 +116,6 @@ markdown_extensions:
 plugins:
   - git-revision-date
   - git-revision-date-localized:
-      fallback_to_build_date: true
       enable_creation_date: true
       type: timeago
   - mkdocs-jupyter:
