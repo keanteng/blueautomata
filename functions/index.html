@@ -950,7 +950,7 @@
 </span></code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>Read this to learn more on the data compilation workflow</p>
+<p>Read <a href="https://keanteng.github.io/blueautomata/concepts/">this</a> to learn more on the data compilation workflow</p>
 </div>
 <h3 id="11-usage-example">1.1 Usage Example<a class="headerlink" href="#11-usage-example" title="Permanent link">&para;</a></h3>
 <p>Read the first five rows of the compiled data</p>
@@ -967,7 +967,7 @@
 </span></code></pre></div>
 <div class="admonition tips">
 <p class="admonition-title">Tips</p>
-<p>Go to this notebook section to see the code in action using Jupyter notebook</p>
+<p>Go to <a href="https://keanteng.github.io/blueautomata/notebooks/01BlueAutomata/">this</a> notebook section to see the code in action using Jupyter notebook</p>
 </div>
 <h2 id="2-categorized-file-export">2. Categorized File Export<a class="headerlink" href="#2-categorized-file-export" title="Permanent link">&para;</a></h2>
 <p>To quickly export the large compiled dataset into individual Excel files for each category, you can work with the <code>BatchExport</code> class that takes two input parameters:</p>
@@ -990,7 +990,7 @@
 </span></code></pre></div>
 <div class="admonition tips">
 <p class="admonition-title">Tips</p>
-<p>Go to this notebook section to see the code in action using Jupyter notebook</p>
+<p>Go to <a href="https://keanteng.github.io/blueautomata/notebooks/05BatchExport/">this</a> notebook section to see the code in action using Jupyter notebook</p>
 </div>
 <h2 id="3-using-vba">3. Using VBA<a class="headerlink" href="#3-using-vba" title="Permanent link">&para;</a></h2>
 <p>If you want to apply some VBA functions on the exported Excel files, you can call the class <code>automate_vba</code> that takes two parameters <code>filepath</code> and <code>macro</code>.</p>
@@ -1006,7 +1006,7 @@
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>In this function, it requires the VBA itself to allow user to select file by popping up a file explorer window, thus the function is meant to call the VBA function, but is not able to know which files that the macro will be executed on.</p>
-<p>To add file selection function to your VBA program, see this.</p>
+<p>To add file selection function to your VBA program, see <a href="https://keanteng.github.io/blueautomata/vba_integrate/">this</a>.</p>
 </div>
 <p>Inside <code>automate_vba</code> class, there is a <code>templatize</code> function that will call the macro code from your Excel workbook:</p>
 <div class="language-py highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">templatetize</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
@@ -1022,7 +1022,7 @@
 </span></code></pre></div>
 <div class="admonition tips">
 <p class="admonition-title">Tips</p>
-<p>Go to this notebook section to see the code in action using Jupyter notebook</p>
+<p>Go to <a href="https://keanteng.github.io/blueautomata/notebooks/06AutomateVBA/">this</a> notebook section to see the code in action using Jupyter notebook</p>
 </div>
 <h2 id="4-output-foresight">4. Output Foresight<a class="headerlink" href="#4-output-foresight" title="Permanent link">&para;</a></h2>
 <p>This package also provides function for you to take a preview at the output with a summary report based on your input parameter, for example:</p>
@@ -1074,21 +1074,35 @@
 <p>Inside the <code>Automata Report</code> class, there is a function <code>automata_report_summary</code> that will produce the output summary report:</p>
 <div class="language-py highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">automata_report_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 </span></code></pre></div>
+<p>If you would like to know what exactly are the unmatched items, you can simply call:</p>
+<div class="language-py highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">automata_report_unmatch</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</span></code></pre></div>
 <h3 id="41-usage-example">4.1 Usage Example<a class="headerlink" href="#41-usage-example" title="Permanent link">&para;</a></h3>
 <p>Producing the output summary report</p>
-<div class="language-py highlight"><span class="filename">Example</span><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">df</span> <span class="o">=</span> <span class="n">AutomataReport</span><span class="p">(</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>    <span class="n">folder_path</span> <span class="o">=</span> <span class="s1">&#39;data/fakesystem&#39;</span><span class="p">,</span>
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>    <span class="n">checklist</span> <span class="o">=</span> <span class="s1">&#39;data/checklist.xlsx&#39;</span><span class="p">,</span>
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>    <span class="n">staff_data</span> <span class="o">=</span> <span class="s1">&#39;data/fake_hr_data.xlsx&#39;</span><span class="p">,</span>
-</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>    <span class="n">name_key</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;NASDAQ&#39;</span><span class="p">,</span> <span class="s1">&#39;KLSE&#39;</span><span class="p">,</span> <span class="s1">&#39;NYSE&#39;</span><span class="p">,</span> <span class="s1">&#39;TSE&#39;</span><span class="p">],</span>
-</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>    <span class="n">name_code</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
-</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="p">)</span>
-</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>
-</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="n">df</span><span class="o">.</span><span class="n">automata_report_summary</span><span class="p">()</span>
+<div class="language-py highlight"><span class="filename">Example</span><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">df</span> <span class="o">=</span> <span class="n">AutomataReport</span><span class="p">(</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>    <span class="n">folder_path</span> <span class="o">=</span> <span class="s1">&#39;data/fakesystem&#39;</span><span class="p">,</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>    <span class="n">checklist</span> <span class="o">=</span> <span class="s1">&#39;data/checklist.xlsx&#39;</span><span class="p">,</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>    <span class="n">staff_data</span> <span class="o">=</span> <span class="s1">&#39;data/fake_hr_data.xlsx&#39;</span><span class="p">,</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>    <span class="n">name_key</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;NASDAQ&#39;</span><span class="p">,</span> <span class="s1">&#39;KLSE&#39;</span><span class="p">,</span> <span class="s1">&#39;NYSE&#39;</span><span class="p">,</span> <span class="s1">&#39;TSE&#39;</span><span class="p">],</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>    <span class="n">name_code</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="p">)</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="n">df</span><span class="o">.</span><span class="n">automata_report_summary</span><span class="p">()</span>
+</span></code></pre></div>
+<p>Get a list of the unmatched items</p>
+<div class="language-py highlight"><span class="filename">Example</span><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">df</span> <span class="o">=</span> <span class="n">AutomataReport</span><span class="p">(</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>    <span class="n">folder_path</span> <span class="o">=</span> <span class="s1">&#39;data/fakesystem&#39;</span><span class="p">,</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>    <span class="n">checklist</span> <span class="o">=</span> <span class="s1">&#39;data/checklist.xlsx&#39;</span><span class="p">,</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>    <span class="n">staff_data</span> <span class="o">=</span> <span class="s1">&#39;data/fake_hr_data.xlsx&#39;</span><span class="p">,</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>    <span class="n">name_key</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;NASDAQ&#39;</span><span class="p">,</span> <span class="s1">&#39;KLSE&#39;</span><span class="p">,</span> <span class="s1">&#39;NYSE&#39;</span><span class="p">,</span> <span class="s1">&#39;TSE&#39;</span><span class="p">],</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>    <span class="n">name_code</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="p">)</span>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="n">df</span><span class="o">.</span><span class="n">automata_report_unmatch</span><span class="p">()</span>
 </span></code></pre></div>
 <div class="admonition tips">
 <p class="admonition-title">Tips</p>
-<p>Go to this notebook section to see the code in action using Jupyter notebook</p>
+<p>Go to <a href="https://keanteng.github.io/blueautomata/notebooks/02AutomataReport/">this</a> notebook section to see the code in action using Jupyter notebook</p>
 </div>
 <h2 id="5-inconsistent-data-entry">5. Inconsistent Data Entry<a class="headerlink" href="#5-inconsistent-data-entry" title="Permanent link">&para;</a></h2>
 <p>A special class named <code>Inconsistency</code> is created to deal with Excel file that:</p>
@@ -1100,65 +1114,73 @@
 </li>
 </ul>
 <p>This class takes in 4 parameters, as follows:</p>
-<div class="language-py highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">Inconsistency</span><span class="p">(</span>
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>    <span class="n">filepath</span> <span class="o">=</span> <span class="s1">&#39;PATH&#39;</span><span class="p">,</span>
-</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>    <span class="n">staff_data</span> <span class="o">=</span> <span class="s1">&#39;PATH&#39;</span><span class="p">,</span>
-</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>    <span class="n">checklist</span> <span class="o">=</span> <span class="s1">&#39;PATH&#39;</span><span class="p">,</span>
-</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>    <span class="n">sheet_number</span> <span class="o">=</span> <span class="mi">1</span>
-</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="p">)</span>
+<div class="language-py highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">Inconsistency</span><span class="p">(</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>    <span class="n">filepath</span> <span class="o">=</span> <span class="s1">&#39;PATH&#39;</span><span class="p">,</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>    <span class="n">staff_data</span> <span class="o">=</span> <span class="s1">&#39;PATH&#39;</span><span class="p">,</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>    <span class="n">checklist</span> <span class="o">=</span> <span class="s1">&#39;PATH&#39;</span><span class="p">,</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>    <span class="n">sheet_number</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="p">)</span>
 </span></code></pre></div>
 <p>Inside the <code>Inconsistency</code> class there is a function called <code>fix_inconsistency</code> that will automatically rectify the wrong names and update the dataset with information such as <code>User ID</code>, <code>Department</code>, <code>Dept Code</code>, <code>System1</code> and <code>Cube</code></p>
-<div class="language-py highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">fix_inconsistency</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<div class="language-py highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">fix_inconsistency</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 </span></code></pre></div>
 <p>Of course, there will be time all the wrong names could not be fixed, you can cal the <code>inconsistency_report</code> function to extract out the name that could not be fixed:</p>
-<div class="language-py highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">inconsistency_report</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<div class="language-py highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">inconsistency_report</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 </span></code></pre></div>
 <h3 id="51-usage-example">5.1 Usage Example<a class="headerlink" href="#51-usage-example" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Compiling data</li>
 </ul>
-<div class="language-py highlight"><span class="filename">Example</span><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">test</span> <span class="o">=</span> <span class="n">Inconsistency</span><span class="p">(</span>
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>    <span class="n">filepath</span> <span class="o">=</span> <span class="s1">&#39;PATH&#39;</span><span class="p">,</span>
-</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>    <span class="n">staff_data</span> <span class="o">=</span> <span class="s1">&#39;PATH&#39;</span><span class="p">,</span>
-</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>    <span class="n">checklist</span> <span class="o">=</span> <span class="s1">&#39;PATH&#39;</span><span class="p">,</span>
-</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>    <span class="n">sheet_number</span> <span class="o">=</span> <span class="mi">1</span>
-</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="p">)</span>
-</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>
-</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="n">df</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">fix_inconsistency</span><span class="p">()</span>
+<div class="language-py highlight"><span class="filename">Example</span><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">test</span> <span class="o">=</span> <span class="n">Inconsistency</span><span class="p">(</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>    <span class="n">filepath</span> <span class="o">=</span> <span class="s1">&#39;PATH&#39;</span><span class="p">,</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>    <span class="n">staff_data</span> <span class="o">=</span> <span class="s1">&#39;PATH&#39;</span><span class="p">,</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>    <span class="n">checklist</span> <span class="o">=</span> <span class="s1">&#39;PATH&#39;</span><span class="p">,</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>    <span class="n">sheet_number</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="p">)</span>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="n">df</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">fix_inconsistency</span><span class="p">()</span>
 </span></code></pre></div>
 <ul>
 <li>Get summary for unmatched staff names</li>
 </ul>
-<div class="language-py highlight"><span class="filename">Example</span><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">test</span> <span class="o">=</span> <span class="n">Inconsistency</span><span class="p">(</span>
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>    <span class="n">filepath</span> <span class="o">=</span> <span class="s1">&#39;PATH&#39;</span><span class="p">,</span>
-</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>    <span class="n">staff_data</span> <span class="o">=</span> <span class="s1">&#39;PATH&#39;</span><span class="p">,</span>
-</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>    <span class="n">checklist</span> <span class="o">=</span> <span class="s1">&#39;PATH&#39;</span><span class="p">,</span>
-</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>    <span class="n">sheet_number</span> <span class="o">=</span> <span class="mi">1</span>
-</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="p">)</span>
-</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>
-</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="n">df</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">inconsistency_report</span><span class="p">()</span>
+<div class="language-py highlight"><span class="filename">Example</span><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">test</span> <span class="o">=</span> <span class="n">Inconsistency</span><span class="p">(</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>    <span class="n">filepath</span> <span class="o">=</span> <span class="s1">&#39;PATH&#39;</span><span class="p">,</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>    <span class="n">staff_data</span> <span class="o">=</span> <span class="s1">&#39;PATH&#39;</span><span class="p">,</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>    <span class="n">checklist</span> <span class="o">=</span> <span class="s1">&#39;PATH&#39;</span><span class="p">,</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>    <span class="n">sheet_number</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="p">)</span>
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="n">df</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">inconsistency_report</span><span class="p">()</span>
 </span></code></pre></div>
+<div class="admonition tips">
+<p class="admonition-title">Tips</p>
+<p>Go to <a href="https://keanteng.github.io/blueautomata/notebooks/03Inconsistency/">this</a> notebook section to see the code in action using Jupyter notebook</p>
+</div>
 <h2 id="6-system-cube-checking">6. System &amp; Cube Checking<a class="headerlink" href="#6-system-cube-checking" title="Permanent link">&para;</a></h2>
 <p>This package also contains a class called <code>SystemCubeChecker</code> to update the wrongly assigned system and cube. In other words, it will update the entries where the cube names are put as system names by moving the cube names to the cube column and re-assigning a system name to them. The class takes in 3 parameters:</p>
-<div class="language-py highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">SystemCubeChecker</span><span class="p">(</span>
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>    <span class="n">masterlistpath</span> <span class="o">=</span> <span class="s1">&#39;PATH&#39;</span><span class="p">,</span>
-</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>    <span class="n">system_to_check</span> <span class="o">=</span> <span class="p">[],</span>
-</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>    <span class="n">cube_to_assign</span> <span class="o">=</span> <span class="p">[],</span>
-</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="p">)</span>
+<div class="language-py highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">SystemCubeChecker</span><span class="p">(</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>    <span class="n">masterlistpath</span> <span class="o">=</span> <span class="s1">&#39;PATH&#39;</span><span class="p">,</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>    <span class="n">system_to_check</span> <span class="o">=</span> <span class="p">[],</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>    <span class="n">cube_to_assign</span> <span class="o">=</span> <span class="p">[],</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="p">)</span>
 </span></code></pre></div>
 <p>You can use the <code>system_cube_update</code> function to perform the reassignment:</p>
-<div class="language-py highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">system_cube_update</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<div class="language-py highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="n">system_cube_update</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 </span></code></pre></div>
 <h3 id="61-usage-example">6.1 Usage Example<a class="headerlink" href="#61-usage-example" title="Permanent link">&para;</a></h3>
 <p>Here is how you can perform the reassignment:</p>
-<div class="language-py highlight"><span class="filename">Example</span><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">test</span> <span class="o">=</span> <span class="n">SystemCubeChecker</span><span class="p">(</span>
-</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>    <span class="n">masterlistpath</span> <span class="o">=</span> <span class="s1">&#39;C:/Users/limzi/OneDrive/Desktop&#39;</span><span class="p">,</span>
-</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>    <span class="n">system_to_check</span><span class="o">=</span> <span class="p">[</span><span class="s1">&#39;GOOG&#39;</span><span class="p">,</span> <span class="s1">&#39;NFLX&#39;</span><span class="p">],</span>
-</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>    <span class="n">cube_to_assign</span><span class="o">=</span><span class="s1">&#39;KLSE&#39;</span>
-</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="p">)</span>
-</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>
-</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="n">test</span><span class="o">.</span><span class="n">system_cube_update</span><span class="p">()</span>
+<div class="language-py highlight"><span class="filename">Example</span><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="n">test</span> <span class="o">=</span> <span class="n">SystemCubeChecker</span><span class="p">(</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>    <span class="n">masterlistpath</span> <span class="o">=</span> <span class="s1">&#39;C:/Users/limzi/OneDrive/Desktop&#39;</span><span class="p">,</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>    <span class="n">system_to_check</span><span class="o">=</span> <span class="p">[</span><span class="s1">&#39;GOOG&#39;</span><span class="p">,</span> <span class="s1">&#39;NFLX&#39;</span><span class="p">],</span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>    <span class="n">cube_to_assign</span><span class="o">=</span><span class="s1">&#39;KLSE&#39;</span>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="p">)</span>
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="n">test</span><span class="o">.</span><span class="n">system_cube_update</span><span class="p">()</span>
 </span></code></pre></div>
+<div class="admonition tips">
+<p class="admonition-title">Tips</p>
+<p>Go to <a href="https://keanteng.github.io/blueautomata/notebooks/04SystemCube/">this</a> notebook section to see the code in action using Jupyter notebook</p>
+</div>
 <div class="footnote">
 <hr />
 <ol>
@@ -1173,11 +1195,11 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-09-13T01:51:31+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-09-13</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-09-13T07:06:09+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-09-13</span>
       
         <br>
         Created:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-09-13T01:51:31+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-09-13</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-09-03T09:00:26+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-09-03</span>
       
     
   </small>
