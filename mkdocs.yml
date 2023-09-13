@@ -114,6 +114,7 @@ markdown_extensions:
 
 # plugins for jupyter notebook (might slow down site launch)
 plugins:
+  - search
   - git-revision-date
   - git-revision-date-localized:
       enable_creation_date: true
