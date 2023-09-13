@@ -39,6 +39,12 @@ Sub AllWorkbooks()
     Set wbk = Workbooks.Open(Filename:=MyFolder & MyFile)
 
     'Replace the line below with the statements you would want your macro to perform
+
+    wbk.Close savechanges:=True
+    MyFile = Dir 'DIR gets the next file in the folder
+    Loop
+    Application.ScreenUpdating = True
+End Sub
 ```
 
 If you call such macros with pop-out window straight from Python, **sometimes the pop-out window will not be shown**, but it will be hidden. To resolve this, go to task manager and open the pop-out window like this (double click the Excel):

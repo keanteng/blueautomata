@@ -44,7 +44,7 @@ automata_execution(self)
 ```
 
 !!! info
-    Read this to learn more on the data compilation workflow
+    Read [this](https://keanteng.github.io/blueautomata/concepts/) to learn more on the data compilation workflow
 
 ### 1.1 Usage Example
 Read the first five rows of the compiled data
@@ -63,7 +63,7 @@ df.head()
 ```
 
 !!! tips
-    Go to this notebook section to see the code in action using Jupyter notebook
+    Go to [this](https://keanteng.github.io/blueautomata/notebooks/01BlueAutomata/) notebook section to see the code in action using Jupyter notebook
 
 ## 2. Categorized File Export
 To quickly export the large compiled dataset into individual Excel files for each category, you can work with the `BatchExport` class that takes two input parameters:
@@ -94,7 +94,7 @@ df.batch_export
 ```
 
 !!! tips
-    Go to this notebook section to see the code in action using Jupyter notebook
+    Go to [this](https://keanteng.github.io/blueautomata/notebooks/05BatchExport/) notebook section to see the code in action using Jupyter notebook
 
 ## 3. Using VBA
 If you want to apply some VBA functions on the exported Excel files, you can call the class `automate_vba` that takes two parameters `filepath` and `macro`.
@@ -112,7 +112,7 @@ automate_vba(
 !!! warning
     In this function, it requires the VBA itself to allow user to select file by popping up a file explorer window, thus the function is meant to call the VBA function, but is not able to know which files that the macro will be executed on.
 
-    To add file selection function to your VBA program, see this.
+    To add file selection function to your VBA program, see [this](https://keanteng.github.io/blueautomata/vba_integrate/).
 
 Inside `automate_vba` class, there is a `templatize` function that will call the macro code from your Excel workbook:
 
@@ -133,7 +133,7 @@ start.templatetize()
 ```
 
 !!! tips
-    Go to this notebook section to see the code in action using Jupyter notebook
+    Go to [this](https://keanteng.github.io/blueautomata/notebooks/06AutomateVBA/) notebook section to see the code in action using Jupyter notebook
 
 ## 4. Output Foresight
 This package also provides function for you to take a preview at the output with a summary report based on your input parameter, for example:
@@ -163,6 +163,12 @@ Inside the `Automata Report` class, there is a function `automata_report_summary
 automata_report_summary(self)
 ```
 
+If you would like to know what exactly are the unmatched items, you can simply call:
+
+```py
+automata_report_unmatch(self)
+```
+
 ### 4.1 Usage Example
 Producing the output summary report
 
@@ -178,8 +184,22 @@ df = AutomataReport(
 df.automata_report_summary()
 ```
 
+Get a list of the unmatched items
+
+```py title='Example'
+df = AutomataReport(
+    folder_path = 'data/fakesystem',
+    checklist = 'data/checklist.xlsx',
+    staff_data = 'data/fake_hr_data.xlsx',
+    name_key = ['NASDAQ', 'KLSE', 'NYSE', 'TSE'],
+    name_code = [1,1,1,1],
+)
+
+df.automata_report_unmatch()
+```
+
 !!! tips
-    Go to this notebook section to see the code in action using Jupyter notebook
+    Go to [this](https://keanteng.github.io/blueautomata/notebooks/02AutomataReport/) notebook section to see the code in action using Jupyter notebook
 
 ## 5. Inconsistent Data Entry
 A special class named `Inconsistency` is created to deal with Excel file that:
@@ -238,6 +258,9 @@ test = Inconsistency(
 df = test.inconsistency_report()
 ```
 
+!!! tips
+    Go to [this](https://keanteng.github.io/blueautomata/notebooks/03Inconsistency/) notebook section to see the code in action using Jupyter notebook
+
 ## 6. System & Cube Checking
 This package also contains a class called `SystemCubeChecker` to update the wrongly assigned system and cube. In other words, it will update the entries where the cube names are put as system names by moving the cube names to the cube column and re-assigning a system name to them. The class takes in 3 parameters:
 
@@ -268,6 +291,7 @@ test = SystemCubeChecker(
 test.system_cube_update()
 ```
 
-
+!!! tips
+    Go to [this](https://keanteng.github.io/blueautomata/notebooks/04SystemCube/) notebook section to see the code in action using Jupyter notebook
 
 [^1]: For with filter Excel file, the filter only applies to column with the following names: `status` and `Disable Flag *`
